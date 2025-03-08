@@ -1,4 +1,4 @@
-# 🍪 Cookies Converter
+# 🍪 Cookies Convert
 
 Este projeto converte um arquivo `cookies.json` para o formato **Netscape**, que pode ser importado no Firefox e outros navegadores.
 
