@@ -3,7 +3,7 @@
 Este projeto converte um arquivo `cookies.json` para o formato **Netscape**, que pode ser importado no Firefox e outros navegadores.
 
 ## 🚀 Como funciona?
-1. Coloque seu arquivo `cookies.json` na pasta `cookies_converter`.
+1. Coloque seu arquivo `cookies.json` na pasta `Cookie2Netscape`.
 2. Execute o script Python para gerar `cookies_netscape.txt`.
 3. Importe o arquivo convertido no navegador.
 
