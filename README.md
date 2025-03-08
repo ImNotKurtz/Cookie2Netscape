@@ -14,7 +14,7 @@ Este projeto converte um arquivo `cookies.json` para o formato **Netscape**, que
 ```sh
 # Clone o repositório
 git clone https://github.com/ImNotKurtz/Cookie2Netscape 
-cd cookies-converter
+cd Cookie2Netscape
 
 # Execute o script
 python convert.py
