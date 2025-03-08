@@ -13,7 +13,7 @@ Este projeto converte um arquivo `cookies.json` para o formato **Netscape**, que
 ## ⚡ Como usar
 ```sh
 # Clone o repositório
-[git clone https://github.com/seu-usuario/cookies-converter.git](https://github.com/ImNotKurtz/Cookie2Netscape)
+git clone https://github.com/ImNotKurtz/Cookie2Netscape 
 cd cookies-converter
 
 # Execute o script
