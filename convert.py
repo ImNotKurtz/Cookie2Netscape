@@ -4,8 +4,8 @@ import os
 def convert_to_netscape(json_file, netscape_file):
     """
     Converte um arquivo JSON de cookies para o formato Netscape.
-    
-    :param json_file: Caminho do arquivo de entrada (cookies.json)
+
+    :param json_file: Caminho do arquivo de entrada
     :param netscape_file: Caminho do arquivo de saída (cookies_netscape.txt)
     """
     try:
@@ -37,12 +37,12 @@ if __name__ == "__main__":
     directory = "cookies_converter"
     os.makedirs(directory, exist_ok=True)
 
-    # Definir caminhos
-    json_path = os.path.join(directory, "cookies.json")
-    netscape_path = os.path.join(directory, "cookies_netscape.txt")
-
-    # Verificar se o arquivo de entrada existe
-    if os.path.exists(json_path):
+    # Procurar automaticamente um arquivo JSON ou TXT na pasta
+    files = [f for f in os.listdir(directory) if f.endswith((".json", ".txt"))]
+    
+    if files:
+        json_path = os.path.join(directory, files[0])  # Usa o primeiro arquivo encontrado
+        netscape_path = os.path.join(directory, "cookies_netscape.txt")
         convert_to_netscape(json_path, netscape_path)
     else:
-        print(f"⚠️ Arquivo {json_path} não encontrado. Coloque o cookies.json na pasta {directory} e tente novamente.")
+        print(f"⚠️ Nenhum arquivo JSON ou TXT encontrado na pasta {directory}. Coloque um arquivo de cookies lá e tente novamente.")
