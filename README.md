@@ -25,3 +25,6 @@ Se o arquivo `cookies.json` não estiver na pasta correta, o script informará o
 ## 📜 Licença
 Este projeto está sob a licença MIT.
 
+## Authors
+
+- [@Kurtz](https://github.com/ImNotKurtz)
