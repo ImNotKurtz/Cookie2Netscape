@@ -1,20 +1,25 @@
 import json
 import os
+import time
+
+def print_hacker_text(text, delay=0.05):
+    """ Prints text with a hacker-style effect """
+    for char in text:
+        print(char, end="", flush=True)
+        time.sleep(delay)
+    print()
 
 def convert_to_netscape(json_file, netscape_file):
-    """
-    Converte um arquivo JSON de cookies para o formato Netscape.
-
-    :param json_file: Caminho do arquivo de entrada
-    :param netscape_file: Caminho do arquivo de saída (cookies_netscape.txt)
-    """
+    """Converts a JSON cookie file to Netscape format."""
     try:
+        print_hacker_text("\n[+] Starting cookie conversion...\n", 0.05)
+
         with open(json_file, "r", encoding="utf-8") as f:
             cookies = json.load(f)
 
         with open(netscape_file, "w", encoding="utf-8") as f:
             f.write("# Netscape HTTP Cookie File\n")
-            f.write("# Este arquivo pode ser importado em navegadores.\n")
+            f.write("# Automatically generated - Use wisely 😈\n")
             f.write("# domain\tflag\tpath\tsecure\texpiration\tname\tvalue\n")
 
             for cookie in cookies:
@@ -27,22 +32,54 @@ def convert_to_netscape(json_file, netscape_file):
                 value = cookie.get("value", "")
 
                 f.write(f"{domain}\t{flag}\t{path}\t{secure}\t{expiration}\t{name}\t{value}\n")
-        
-        print(f"✅ Conversão concluída! Arquivo salvo em: {netscape_file}")
+
+        print_hacker_text("[✅] Conversion completed! File saved as 'cookies_netscape.txt'\n", 0.03)
     except Exception as e:
-        print(f"❌ Erro ao converter: {e}")
+        print_hacker_text(f"[❌] Error during conversion: {e}", 0.03)
 
 if __name__ == "__main__":
-    # Criar a pasta se não existir
-    directory = "cookies_converter"
+    # Clear the screen before starting
+    os.system("cls" if os.name == "nt" else "clear")  # Clear the screen
+
+    print_hacker_text("""        
+        _  __          _       
+       | |/ /   _ _ __| |_ ____
+       | ' / | | | '__| __|_  /
+       | . \ |_| | |  | |_ / / 
+       |_|\_\__,_|_|   \__/___|
+                         
+
+        C O O K I E  2  N E T S C A P E
+    """, 0.01)
+
+    directory = "cookies_converter"  # Make sure the folder is named this
     os.makedirs(directory, exist_ok=True)
 
-    # Procurar automaticamente um arquivo JSON ou TXT na pasta
-    files = [f for f in os.listdir(directory) if f.endswith((".json", ".txt"))]
-    
-    if files:
-        json_path = os.path.join(directory, files[0])  # Usa o primeiro arquivo encontrado
-        netscape_path = os.path.join(directory, "cookies_netscape.txt")
-        convert_to_netscape(json_path, netscape_path)
+    # Check if the Netscape file already exists
+    netscape_path = os.path.join(directory, "cookies_netscape.txt")
+
+    if os.path.exists(netscape_path):
+        print_hacker_text(f"[⚠️] Cookies have already been converted and saved as '{netscape_path}'.", 0.05)
     else:
-        print(f"⚠️ Nenhum arquivo JSON ou TXT encontrado na pasta {directory}. Coloque um arquivo de cookies lá e tente novamente.")
+        # List all .json and .txt files in the folder
+        files = [f for f in os.listdir(directory) if f.endswith((".json", ".txt"))]
+
+        if files:
+            # Get the first .json or .txt file found
+            json_path = os.path.join(directory, files[0])
+            
+            # Make sure the file exists and is readable
+            if not os.path.exists(json_path):
+                print_hacker_text(f"[❌] File not found: {json_path}", 0.05)
+            else:
+                try:
+                    # Try to load the file as JSON
+                    with open(json_path, "r", encoding="utf-8") as f:
+                        cookies = json.load(f)  # Try to parse it as JSON
+                    
+                    # Convert cookies to Netscape format
+                    convert_to_netscape(json_path, netscape_path)
+                except json.JSONDecodeError:
+                    print_hacker_text(f"[❌] Error: The file '{json_path}' is not valid JSON.", 0.05)
+        else:
+            print_hacker_text(f"[❌] No .json or .txt files found in '{directory}'.", 0.05)
